@@ -13,6 +13,8 @@ mongoose.Promis = global.Promise;
 
 // Initialize Routes
 const posts = require('./routes/posts');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 // Middlewares
 app.use(morgan('tiny'));
@@ -27,6 +29,8 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('/posts', posts);
+app.use('/users', users);
+app.use('/auth', auth);
 
 const port = process.env.PORT || 8081;
 

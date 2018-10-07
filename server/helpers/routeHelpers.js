@@ -59,7 +59,7 @@ module.exports = {
       postSchema: Joi.object().keys ({
           subject: Joi.string().required(),
           message: Joi.string().required(),
-          username: Joi.string().min(4).max(24).required()
+          author: Joi.string().min(4).max(24).required()
       }),
 
       putPostSchema: Joi.object().keys ({

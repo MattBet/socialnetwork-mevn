@@ -11,20 +11,20 @@ module.exports = {
     // Validation : DONE
     newPost: async (req, res, next) => {
         // Find current user/author
-        // const author = await User.findById(req.value.body.author);
+        const author = await User.findById(req.value.body.author);
 
         // Create a new Post
         const newPost = req.value.body;
-        // delete newPost.author;
+        delete newPost.author;
 
         const post = new Post(newPost);
-        // post.author = author; // Assign author to post
+        post.author = author; // Assign author to post
 
         await post.save();
 
         // Add newly created post to the current user
-        // author.posts.push(post);
-        // await author.save();
+        author.posts.push(post);
+        await author.save();
 
         res.status(200).json(post);
     },
@@ -60,20 +60,20 @@ module.exports = {
 
         // Get post
         const post = await Post.findById(id);
-        // if (!post)
-        //     return res.status(404).json({ error: "Post doesn't exist"});
-        //
-        // const authorId = post.value.author;
-        //
-        // // Get author
-        // const author = await User.findById(authorId);
+        if (!post)
+            return res.status(404).json({ error: "Post doesn't exist"});
+
+        const authorId = post.value.author;
+
+        // Get author
+        const author = await User.findById(authorId);
 
         // Remove the post
         await post.remove();
 
         // // Remove post from the author's post list
-        // author.posts.pull(post);
-        // await author.save();
+        author.posts.pull(post);
+        await author.save();
 
         res.status(200).json({ success: true});
 

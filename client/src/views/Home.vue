@@ -33,8 +33,8 @@
               <p class="card-text">{{post.message}}</p>
               <a href="#" class="btn btn-primary">Go</a>
           </div>
-          <div class="card-footer">
-              <p class="text-muted">{{post.created_at}}</p>
+          <div class="card-footer text-muted">
+              {{post.created_at}}
           </div>
       </div>
   </div>

@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-	username: String,
+	author: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
     subject: String,
     message: String,
     created_at: {
